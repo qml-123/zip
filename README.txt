@@ -1,4 +1,3 @@
-首先执行 git clone https://github.com/qml-123/zip.git
 首先新建build/目录和bin/目录
 进入build/目录，执行 cmake .. 命令，之后执行make，可执行文件就输出到bin/目录中了
 
@@ -9,8 +8,8 @@ cd build
 cmake ..
 make
 cd ..
-bin/server port 
-bin/client port
+bin/server 
+bin/client
 ///
 
 支持三种命令ls、cat、send

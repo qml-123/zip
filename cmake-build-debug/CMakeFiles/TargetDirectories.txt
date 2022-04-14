@@ -1,0 +1,4 @@
+/Users/bytedance/Documents/CLionProject/zip/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/bytedance/Documents/CLionProject/zip/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/bytedance/Documents/CLionProject/zip/cmake-build-debug/CMakeFiles/client.dir
+/Users/bytedance/Documents/CLionProject/zip/cmake-build-debug/CMakeFiles/server.dir
