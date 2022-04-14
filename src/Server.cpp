@@ -68,7 +68,7 @@ namespace qml{
 
     int Server::ReadFile() {
         int fd = open(filename, O_RDONLY);
-        if(!fd) {
+        if(fd == -1) {
             return 1;
         }
         memset(res, 0, sizeof res);

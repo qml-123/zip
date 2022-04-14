@@ -110,6 +110,7 @@ namespace qml {
         init_file();
         bzero(res, sizeof res);
         while ((num_read = socket_file->Recv(res, sizeof res)) > 0) {
+            res[num_read] = 0;
             std::cout << res;
             bzero(res, sizeof res);
         }
