@@ -9,8 +9,8 @@ cd build
 cmake ..
 make
 cd ..
-bin/server 
-bin/client
+bin/server port 
+bin/client port
 ///
 
 支持三种命令ls、cat、send
