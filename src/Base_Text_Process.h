@@ -9,11 +9,13 @@ namespace qml {
     class Encode {
     public:
         virtual bool file_encode(std::string, bool o2file, std::string) = 0;
+		std::vector<std::string>File_name;
     };
 
     class Decode {
     public:
         virtual bool file_decode(std::string, bool o2file, std::string) = 0;
+		std::vector<std::string>File_name;
     };
 }
 

@@ -6,26 +6,27 @@
 #define ZIP_SOCKET_H
 #include "com.h"
 
-typedef struct sockaddr* SP;
-typedef struct NetWork
-{
-    int fd;			// socket描述符
-    int type;		// 协议类型 SOCK_STREAM/SOCK_DGRAM
-    socklen_t len; 	// 地址长度
-    struct sockaddr_in addr; // 通信地址
-    NetWork() {
 
-    }
-    NetWork(char* ip, int port) {
-        addr.sin_family = AF_INET;
-        addr.sin_port = htons(port);
-        addr.sin_addr.s_addr = inet_addr(ip);
-        len = sizeof(addr);
-        type = SOCK_STREAM;
-    }
-};
 
 namespace qml {
+    typedef struct sockaddr* SP;
+    typedef struct NetWork
+    {
+        int fd;			// socket描述符
+        int type;		// 协议类型 SOCK_STREAM/SOCK_DGRAM
+        socklen_t len; 	// 地址长度
+        struct sockaddr_in addr; // 通信地址
+        NetWork() {
+
+        }
+        NetWork(char* ip, int port) {
+            addr.sin_family = AF_INET;
+            addr.sin_port = htons(port);
+            addr.sin_addr.s_addr = inet_addr(ip);
+            len = sizeof(addr);
+            type = SOCK_STREAM;
+        }
+    };
 
     class Socket{
     public:
