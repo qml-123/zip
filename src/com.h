@@ -23,11 +23,21 @@
 #include <assert.h>
 #include <vector>
 #include <deque>
-
+#include <algorithm>
 #include<iomanip>
 #include<fstream>
 #include<math.h>
 #include<string>
+
+#define    BITS_MAX               16                                                               // 允许的最大位数
+#define    TOP_VALUE              ((1<<BITS_MAX) - 1)                                              // 允许的最大值
+#define    FIRST_QTR              (TOP_VALUE/4 + 1)                                                // 四分之一范围
+#define    HALF                   (2*FIRST_QTR)                                                    // 四分之二范围
+#define    THIRD_QTR              (3*FIRST_QTR)                                                    // 四分之三范围
+#define    NO_OF_CHARS            256                                                              // 文本中允许的符号
+#define    EOF_SYMBOL             (NO_OF_CHARS + 1)                                                // 特殊符号标号（结束符）
+#define    NO_OF_SYMBOLS          (NO_OF_CHARS + 1)                                                // 符号表中的符号数
+#define    MAX_FREQUENCY          16383                                                            // 频数上限(2^14-1)
 
 #define ASSERT(x, w) \
     if (!(x)) { \

@@ -7,7 +7,7 @@
 #include "com.h"
 #include "Base_Text_Process.h"
 #include "LZ77.h"
-#include "algorithm.h"
+#include "Algorithm.h"
 
 namespace qml {
     enum EncodeType {
