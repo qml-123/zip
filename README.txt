@@ -1,3 +1,4 @@
+git clone https://github.com/qml-123/zip.git
 首先新建build/目录和bin/目录
 进入build/目录，执行 cmake .. 命令，之后执行make，可执行文件就输出到bin/目录中了
 
