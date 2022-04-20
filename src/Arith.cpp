@@ -3,6 +3,8 @@
 //
 
 #include "Arith.h"
+#define    BITS_MAX               16                                                               // 允许的最大位数
+#define    TOP_VALUE              ((1<<BITS_MAX) - 1)                                              // 允许的最大值
 namespace qml {
 //初始话模型
     void ARITH_CODER::init_adapt_model() {
@@ -252,13 +254,7 @@ namespace qml {
         *dest_len = end_decode();
     }
 
-//下面实现一个接口，
-    int get_file_size_by_stat(const char *file) {
-        int ret;
-        struct stat file_info;
-        ret = stat(file, &file_info);
-        return (!ret) ? file_info.st_size : -1;
-    }
+
 
     bool ARITH_Encode::file_encode(std::string src, bool o2file, std::string dst) {
         unsigned char *buffer_src = NULL, *buffer_dst = NULL;

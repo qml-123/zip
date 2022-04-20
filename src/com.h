@@ -29,8 +29,7 @@
 #include<math.h>
 #include<string>
 
-#define    BITS_MAX               16                                                               // 允许的最大位数
-#define    TOP_VALUE              ((1<<BITS_MAX) - 1)                                              // 允许的最大值
+
 #define    FIRST_QTR              (TOP_VALUE/4 + 1)                                                // 四分之一范围
 #define    HALF                   (2*FIRST_QTR)                                                    // 四分之二范围
 #define    THIRD_QTR              (3*FIRST_QTR)                                                    // 四分之三范围
@@ -61,5 +60,8 @@ const unsigned int charactereof='#';
 
 int check(char*);
 int rand_port();
+
+//下面实现一个接口，
+int get_file_size_by_stat(const char *file);
 
 #endif //ZIP_COM_H

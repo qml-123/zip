@@ -79,9 +79,9 @@ namespace qml {
         std::string baseCode = "Code.bat";
         std::string codef;
         std::string bitef;
-        std::string sourcef;
-        std::string codef2;
         std::string sortf;
+        std::string sourcef;   //源文件名
+        std::string codef2;    //加码后的文件名
         long ziptotal;
         long total;
         double d;

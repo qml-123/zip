@@ -16,3 +16,11 @@ int check(char* s) {
     }
     return 0;
 }
+
+
+int get_file_size_by_stat(const char *file) {
+    int ret;
+    struct stat file_info;
+    ret = stat(file, &file_info);
+    return (!ret) ? file_info.st_size : -1;
+}

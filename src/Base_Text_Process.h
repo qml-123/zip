@@ -6,16 +6,14 @@
 #define ZIP_BASE_TEXT_PROCESS_H
 #include "com.h"
 namespace qml {
-    class Encode {
+    class Encode : public std::vector<std::string> {
     public:
         virtual bool file_encode(std::string, bool o2file, std::string) = 0;
-		std::vector<std::string>File_name;
     };
 
-    class Decode {
+    class Decode : public std::vector<std::string> {
     public:
         virtual bool file_decode(std::string, bool o2file, std::string) = 0;
-		std::vector<std::string>File_name;
     };
 }
 

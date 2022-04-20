@@ -528,6 +528,7 @@ namespace qml {
                 clear();
             }
             file.close();
+            return true;
         }
 
         void clear() {

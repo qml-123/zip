@@ -87,10 +87,12 @@ namespace qml {
             socket_com->Send(cmd, sizeof cmd);
             init_file();
             Encode* en = encodeFactory->CreateEncode(type);
-            strcpy(filename, "12123_tmp_12123");
+            std::string newFileName = "12123_" + std::string(filename) + "_12123";
+            strcpy(filename, newFileName.c_str());
             en->file_encode(com.back(), true, filename);
             Send_txt();
-            system("rm 12123_tmp_12123");
+            newFileName = "rm " + newFileName;
+            system(newFileName.c_str());
             delete socket_file;
         }
     }
