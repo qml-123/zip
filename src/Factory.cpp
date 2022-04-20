@@ -9,6 +9,8 @@ namespace qml {
             return LZ_EN;
         else if (x == "-al")
             return AL_EN;
+        else if (x == "-ar")
+            return AR_EN;
         else
             return NO_EN;
     }
@@ -18,6 +20,8 @@ namespace qml {
             return LZ_DE;
         else if (x == "-al")
             return AL_DE;
+        else if (x == "-ar")
+            return AR_DE;
         else
             return NO_DE;
     }
@@ -28,6 +32,8 @@ namespace qml {
                 return new File2mark();
             case AL_EN:
                 return new algorithmEncode();
+            case AR_EN:
+                return new ARITH_Encode();
             default:
                 return NULL;
         }
@@ -39,6 +45,8 @@ namespace qml {
                 return new File2char();
             case AL_DE:
                 return new algorithmDecode();
+            case AR_DE:
+                return new ARITH_Decode();
             default:
                 return NULL;
         }

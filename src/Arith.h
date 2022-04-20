@@ -5,6 +5,8 @@
 #ifndef ZIP_ARITH_H
 #define ZIP_ARITH_H
 #include "com.h"
+#include "Base_Text_Process.h"
+
 namespace qml {
     class ARITH_CODER
     {
@@ -57,14 +59,14 @@ namespace qml {
         void arith_uncompress(unsigned char * dest, unsigned int * dest_len, unsigned char * src, unsigned int src_len);
     };
 
-    class ARITH_Encode
+    class ARITH_Encode : public Encode
     {
     private:
         ARITH_CODER coder;
     public:
         bool file_encode(std::string,bool o2file,std::string);
     };
-    class ARITH_Decode
+    class ARITH_Decode : public Decode
     {
     private:
         ARITH_CODER coder;
