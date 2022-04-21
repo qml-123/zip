@@ -121,7 +121,7 @@ namespace qml {
         file_dst = fopen(dst.c_str(), "wb");
         fwrite(buffer_dst, sizeof(char), len_dst, file_dst);
         fclose(file_dst);
-        printf("%d %d\n", len_src, len_dst);
+        // printf("%d %d\n", len_src, len_dst);
 
         free(buffer_src);
         free(buffer_dst);
