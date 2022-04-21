@@ -276,6 +276,8 @@ namespace qml {
             std::cout << "打开赫夫曼树文件失败" << std::endl;
             exit(0);
         }
+        fscanf(fp, "%ld", &transTol, 1);
+        fgets(str, 200, fp);
         fgets(str, 200, fp);
 //	cout << str;
         while (fscanf(fp, "%d", &asc, 1) != EOF)
@@ -303,9 +305,16 @@ namespace qml {
         int f = 1;
         while (ifile.get(ch))
         {
+            if (transTol == 0)
+                break;
             if (ch == '0')f = HT[f].LC;
             else f = HT[f].RC;
-            if (HT[f].LC == 0 && HT[f].RC == 0) { ofile << char(HT[f].Ascii); f = 1; continue; }
+            if (HT[f].LC == 0 && HT[f].RC == 0) {
+                transTol--;
+                ofile << char(HT[f].Ascii);
+                f = 1;
+                continue;
+            }
 
         }
         ifile.close();
@@ -377,6 +386,7 @@ namespace qml {
         d = (double(total) / ziptotal) * 100;
 
         std::ofstream of(bitef, std::ios::out);
+        of << HT[0].Ascii << "-字符总个数" << std::endl;
         of << std::setw(7) << "ASCLL码" << std::setw(10) << "位置" << std::setw(10) << "左孩子" << std::setw(10) << "右孩子" << std::setw(10) << "父结点" << std::endl;
         //ASCLL为0表示非叶子结点
         for (int i = 1; i < 2 * HT[0].weight; i++)

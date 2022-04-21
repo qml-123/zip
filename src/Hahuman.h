@@ -84,6 +84,7 @@ namespace qml {
         std::string codef2;    //加码后的文件名
         long ziptotal;
         long total;
+        long transTol = 0;
         double d;
     };
 }
