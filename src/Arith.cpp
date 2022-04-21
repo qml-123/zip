@@ -257,6 +257,7 @@ namespace qml {
 
 
     bool ARITH_Encode::file_encode(std::string src, bool o2file, std::string dst) {
+        file_names.push_back(dst);
         unsigned char *buffer_src = NULL, *buffer_dst = NULL;
         FILE *file_src = NULL, *file_dst = NULL;
         unsigned int len_src = 0, len_dst = 0;

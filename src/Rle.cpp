@@ -101,6 +101,7 @@ namespace qml {
     }
     bool RLE_Encode::file_encode(std::string src, bool o2file, std::string dst)
     {
+        file_names.push_back(dst);
         unsigned char * buffer_src = NULL, *buffer_dst = NULL;
         FILE * file_src = NULL, *file_dst = NULL;
         unsigned int len_src = 0, len_dst = 0;
@@ -121,7 +122,7 @@ namespace qml {
         file_dst = fopen(dst.c_str(), "wb");
         fwrite(buffer_dst, sizeof(char), len_dst, file_dst);
         fclose(file_dst);
-        // printf("%d %d\n", len_src, len_dst);
+        printf("%d %d\n", len_src, len_dst);
 
         free(buffer_src);
         free(buffer_dst);

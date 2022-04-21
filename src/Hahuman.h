@@ -29,7 +29,7 @@ namespace qml {
         unsigned int bit : 1;
     };
 
-    class Hahuman : public Encode, Decode {
+    class Hahuman : public Encode, public Decode {
     public:
         typedef HTNode* LinkHTNode;
         typedef HTStr* LinkHTStr;

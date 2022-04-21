@@ -9,6 +9,8 @@
 #include "LZ77.h"
 #include "Algorithm.h"
 #include "Arith.h"
+#include "Rle.h"
+#include "Hahuman.h"
 
 namespace qml {
     enum EncodeType {
@@ -16,12 +18,16 @@ namespace qml {
         LZ_EN = 1,
         AL_EN = 2,
         AR_EN = 3,
+        RL_EN = 4,
+        HF_EN = 5,
     };
     enum DecodeType {
         NO_DE = 0,
         LZ_DE = 1,
         AL_DE = 2,
         AR_DE = 3,
+        RL_DE = 4,
+        HF_DE = 5,
     };
     EncodeType check_en(std::string x);
     DecodeType check_de(std::string x);

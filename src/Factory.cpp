@@ -11,6 +11,10 @@ namespace qml {
             return AL_EN;
         else if (x == "-ar")
             return AR_EN;
+        else if (x == "-rl")
+            return RL_EN;
+        else if (x == "-hf")
+            return HF_EN;
         else
             return NO_EN;
     }
@@ -22,6 +26,10 @@ namespace qml {
             return AL_DE;
         else if (x == "-ar")
             return AR_DE;
+        else if (x == "-rl")
+            return RL_DE;
+        else if (x == "-hf")
+            return HF_DE;
         else
             return NO_DE;
     }
@@ -34,6 +42,10 @@ namespace qml {
                 return new algorithmEncode();
             case AR_EN:
                 return new ARITH_Encode();
+            case RL_EN:
+                return new RLE_Encode();
+            case HF_EN:
+                return new Hahuman();
             default:
                 return NULL;
         }
@@ -47,6 +59,10 @@ namespace qml {
                 return new algorithmDecode();
             case AR_DE:
                 return new ARITH_Decode();
+            case RL_DE:
+                return new RLE_Decode();
+            case HF_DE:
+                return new Hahuman();
             default:
                 return NULL;
         }

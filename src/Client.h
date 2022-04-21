@@ -20,7 +20,7 @@ namespace qml{
         Client();
         void init_file();
         void SendFile();
-        void Send_txt();
+        void Send_txt(Encode* en);
         void SendCom();
 
     private:

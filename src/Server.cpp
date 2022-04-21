@@ -45,20 +45,41 @@ namespace qml{
     void Server::RecvFile() {
         bzero(res, sizeof res);
         strcpy(filename, com.back().c_str());
-        int num_read;
+        int num_read, len;
         std::string old_file = "en_";
         old_file += filename;
-        FILE* fd = fopen(old_file.c_str(), "w+");
-        if (!fd) {
-            std::cout << "error" << std::endl;
-            return;
-        }
-        while ((num_read = socket_file_client->Recv(res, sizeof res)) > 0) {
-            fwrite(res,  1, num_read, fd);
+        while (1) {
             bzero(res, sizeof res);
+            num_read = socket_file_client->Recv(res, sizeof res);
+            if (res[0] == '\r' && res[1] == '\n')
+                break;
+            num_read -= 2;
+            while (num_read > -1) {
+                if (res[num_read] == '\r' && res[num_read + 1] == '\n')
+                    break;
+                num_read--;
+            }
+            res[num_read] = 0;
+            FILE *fd = fopen(res, "w+");
+            if (!fd) {
+                std::cout << "error" << std::endl;
+                return;
+            }
+            bzero(res, sizeof res);
+            while ((num_read = socket_file_client->Recv(res, sizeof res)) > 0) {
+                len = num_read - 2;
+                if (res[0] == '\r' && res[1] == '\n')
+                    break;
+                while (len > -1) {
+                    if (res[len] == '\r' && res[len + 1] == '\n')
+                        break;
+                    len--;
+                }
+                fwrite(res, sizeof(char), len, fd);
+                bzero(res, sizeof res);
+            }
+            fclose(fd);
         }
-
-        fclose(fd);
         DecodeType type = check_de(com[1]);
         Decode* de = decodeFactory->CreateDecode(type);
         std::string new_file = "de_";

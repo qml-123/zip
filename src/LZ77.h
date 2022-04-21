@@ -428,7 +428,8 @@ namespace qml {
         char_A char_A_temp;
         Three_mark mark_temp = Three_mark(0, 0, 0); //存放临时的mark
     public:
-        bool file_encode(std::string ifilename, bool o2file, std::string ofilename = "") {
+        bool file_encode(std::string ifilename, bool o2file, std::string ofilename) {
+            file_names.push_back(ofilename);
             file.open(ifilename, std::ios::in | std::ios::binary);
             if (!file) {
                 std::cout << "cannot open file:" << ifilename << std::endl;

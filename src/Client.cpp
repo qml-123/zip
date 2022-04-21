@@ -57,16 +57,43 @@ namespace qml {
     }
 
 
-    void Client::Send_txt() {
-        FILE* fp = fopen(filename, "r");
-        memset(res, 0, sizeof res);
+    void Client::Send_txt(Encode* en) {
         int num_read;
-        bzero(res, sizeof res);
-        while ((num_read = fread(res, sizeof(char), sizeof res, fp)) > 0) {
-            socket_file->Send(res, num_read);
+        std::queue<std::string>tmp_file_name;
+        while (!en->empty()) {
+            std::string x = en->back();
+            tmp_file_name.push(x);
+            FILE* fp = fopen(x.c_str(), "r");
+            memset(res, 0, sizeof res);
+            strcpy(res, x.c_str());
+            num_read = strlen(res);
+            res[num_read++] = '\r';
+            res[num_read++] = '\n';
+            socket_file->Send(res, sizeof res);
             bzero(res, sizeof res);
+            while ((num_read = fread(res, sizeof(char), sizeof(res) - 2, fp)) > 0) {
+                res[num_read++] = '\r';
+                res[num_read++] = '\n';
+                socket_file->Send(res, sizeof res);
+//                std::cout << res << std::endl;
+                bzero(res, sizeof res);
+            }
+            res[0] = '\r';
+            res[1] = '\n';
+            socket_file->Send(res, sizeof res);
+            bzero(res, sizeof res);
+            fclose(fp);
         }
-        fclose(fp);
+        res[0] = '\r';
+        res[1] = '\n';
+        socket_file->Send(res, sizeof res);
+        bzero(res, sizeof res);
+        while (!tmp_file_name.empty()) {
+            std::string tmp = tmp_file_name.front();
+            tmp_file_name.pop();
+            tmp = "rm " + tmp;
+            system(tmp.c_str());
+        }
     }
 
 
@@ -87,12 +114,9 @@ namespace qml {
             socket_com->Send(cmd, sizeof cmd);
             init_file();
             Encode* en = encodeFactory->CreateEncode(type);
-            std::string newFileName = "12123_" + std::string(filename) + "_12123";
-            strcpy(filename, newFileName.c_str());
-            en->file_encode(com.back(), true, filename);
-            Send_txt();
-            newFileName = "rm " + newFileName;
-            system(newFileName.c_str());
+            std::string newFileName = "en_" + com.back();
+            en->file_encode(com.back(), true, newFileName);
+            Send_txt(en);
             delete socket_file;
         }
     }

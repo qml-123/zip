@@ -363,6 +363,11 @@ namespace qml {
         //"保存赫夫曼树的文件名（连同后缀名）：";
         bitef = "en_" + file_name + "_HTree";
         codef = "en_" + file_name + "_" + baseCode;
+
+        file_names.push_back(code2);
+        file_names.push_back(bitef);
+        file_names.push_back(codef);
+
         Save(sortf.c_str(), codef.c_str(), Str, HT);
 
         Transb();

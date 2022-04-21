@@ -16,6 +16,7 @@ namespace qml {
     }
 
     bool algorithmEncode::file_encode(std::string ori_file, bool o2file, std::string en_file) {
+        file_names.push_back(en_file);
         std::string original = "";//原文
         std::string code = "";//编码
         std::vector<int> fre;

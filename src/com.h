@@ -28,7 +28,7 @@
 #include<fstream>
 #include<math.h>
 #include<string>
-
+#include <queue>
 
 #define    FIRST_QTR              (TOP_VALUE/4 + 1)                                                // 四分之一范围
 #define    HALF                   (2*FIRST_QTR)                                                    // 四分之二范围

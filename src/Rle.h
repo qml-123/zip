@@ -35,14 +35,14 @@ namespace qml {
         //解码
         void rle_uncompress(unsigned char * dest, unsigned int * dest_len, unsigned char * src, unsigned int src_len);
     };
-    class RLE_Encode
+    class RLE_Encode : public Encode
     {
     private:
         RLE_CODER coder;
     public:
         bool file_encode(std::string, bool o2file, std::string);
     };
-    class RLE_Decode
+    class RLE_Decode : public Decode
     {
     private:
         RLE_CODER coder;
