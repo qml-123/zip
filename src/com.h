@@ -54,7 +54,7 @@ extern const long long second;
 typedef unsigned char char_A;
 const unsigned A=sizeof(char_A);
 const unsigned N=((unsigned)1<<LogN)-1; //255
-const unsigned L=1 << LogN; //256
+const unsigned L=1 << LogL; //256
 const unsigned int myeof=1;
 const unsigned int charactereof='#';
 

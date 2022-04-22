@@ -432,7 +432,7 @@ namespace qml {
             file_names.push_back(ofilename);
             file.open(ifilename, std::ios::in | std::ios::binary);
             if (!file) {
-                std::cout << "cannot open file:" << ifilename << std::endl;
+                std::cout << "en:cannot open file:" << ifilename << std::endl;
                 return false;
             }
             while (file.read((char *) &char_A_temp, A)) {
@@ -453,7 +453,7 @@ namespace qml {
             marks.push_back(mark_temp);
             //不把二进制存文件就返回
             if (o2file == false) {
-                return true;
+//                return true;
             }//不必存入文件则返回
             //三元组转换成二进制数据存入binbuffer中
             binbuffer.marks2bin(marks);
@@ -461,7 +461,7 @@ namespace qml {
             //将二进制流binbuffer写入文件
             file.open(ofilename, std::ios::out | std::ios::binary);
             if (!file) {
-                std::cout << "cannot open file:" << ofilename << std::endl;
+                std::cout << "en:cannot open file:" << ofilename << std::endl;
                 return false;
             }
             for (int i = 0; i < binbuffer.size(); i++) {
@@ -511,7 +511,7 @@ namespace qml {
             }
             decoder.toend(&charout);
             if (o2file == false) {
-                return true;
+//                return true;
             }//不必存入文件则返回
             //解码后写入文件
             file.open(ofilename, std::ios::out | std::ios::binary);
