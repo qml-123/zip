@@ -115,65 +115,72 @@ namespace qml {
             init_file();
             Encode* en = encodeFactory->CreateEncode(type);
             std::string newFileName = "en_" + com.back();
-            en->file_encode(com.back(), true, newFileName);
-            Send_txt(en);
-            delete socket_file;
-        }
-    }
-    void Client::init_file() {
-        try {
-            socket_file = new Socket("127.0.0.1", 0);
-        } catch (std::bad_alloc &e) {
-            std::cerr << e.what() << std::endl;
-        }
-        NetWork* sock = new NetWork("127.0.0.1", PORT2);
-        socket_file->Connect(sock);
-        delete sock;
-    }
-    void Client::SendCom() {
-        int num_read;
-        socket_com->Send(cmd, sizeof cmd);
-        init_file();
-        bzero(res, sizeof res);
-        while ((num_read = socket_file->Recv(res, sizeof res)) > 0) {
-            res[num_read] = 0;
-            std::cout << res;
-            bzero(res, sizeof res);
-        }
-        delete socket_file;
-    }
-    void Client::handle() {
-        bzero(cmd ,sizeof cmd);
-        std::cout << "->";
-        while (fgets(cmd, sizeof cmd, stdin) != NULL) {
-            split();
-            if (com.empty()) {
-                std::cout << "->";
-                continue;
-            } else if ((int)com.size() > 3) {
-                puts("error");
-            } else if ((int) com.size() == 3) {
-                SendFile();
-            } else {
-                if (com[0] == "exit") {
-                    break;
-                } else if (com[0] == "cls") {
-                    system("clear");
-                } else {
-                    SendCom();
-                }
-            }
-            bzero(cmd, sizeof cmd);
-            std::cout << "->";
-        }
-    }
 
-    Client::~Client() {
-        delete socket_file;
-        delete socket_com;
-        delete encodeFactory;
-        delete decodeFactory;
-    }
+			clock_t start,end; // typedef long clock_t
+			start = clock();
+
+			en->file_encode(com.back(), true, newFileName);
+			end = clock();
+			double duration =(double)(end-start)/CLOCKS_PER_SEC;
+			std::cout << "压缩耗时: " << duration << "ms" << std::endl;
+			Send_txt(en);
+			delete socket_file;
+		}
+	}
+	void Client::init_file() {
+		try {
+			socket_file = new Socket("127.0.0.1", 0);
+		} catch (std::bad_alloc &e) {
+			std::cerr << e.what() << std::endl;
+		}
+		NetWork* sock = new NetWork("127.0.0.1", PORT2);
+		socket_file->Connect(sock);
+		delete sock;
+	}
+	void Client::SendCom() {
+		int num_read;
+		socket_com->Send(cmd, sizeof cmd);
+		init_file();
+		bzero(res, sizeof res);
+		while ((num_read = socket_file->Recv(res, sizeof res)) > 0) {
+			res[num_read] = 0;
+			std::cout << res;
+			bzero(res, sizeof res);
+		}
+		delete socket_file;
+	}
+	void Client::handle() {
+		bzero(cmd ,sizeof cmd);
+		std::cout << "->";
+		while (fgets(cmd, sizeof cmd, stdin) != NULL) {
+			split();
+			if (com.empty()) {
+				std::cout << "->";
+				continue;
+			} else if ((int)com.size() > 3) {
+				puts("error");
+			} else if ((int) com.size() == 3) {
+				SendFile();
+			} else {
+				if (com[0] == "exit") {
+					break;
+				} else if (com[0] == "cls") {
+					system("clear");
+				} else {
+					SendCom();
+				}
+			}
+			bzero(cmd, sizeof cmd);
+			std::cout << "->";
+		}
+	}
+
+	Client::~Client() {
+		delete socket_file;
+		delete socket_com;
+		delete encodeFactory;
+		delete decodeFactory;
+	}
 
 }
 
