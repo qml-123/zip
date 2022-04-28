@@ -22,6 +22,7 @@ namespace qml{
         void SendFile();
         void Send_txt(Encode* en);
         void SendCom();
+		void printHelp();
 
     private:
         Socket* socket_com;

@@ -149,6 +149,17 @@ namespace qml {
 		}
 		delete socket_file;
 	}
+	void Client::printHelp() {
+		if (com[0] == "send") {
+			std::cout << "send -[] filename" << std::endl;
+			std::cout << "usage:" << std::endl;
+			std::cout << "	-al  算数编码" << std::endl;
+			std::cout << "	-ar  自适应算数编码" << std::endl;
+			std::cout << "	-lz  lz算法" << std::endl;
+			std::cout << "	-rl  rle编码" << std::endl;
+			std::cout << "	-hf  哈夫曼编码" << std::endl;
+		}
+	}
 	void Client::handle() {
 		bzero(cmd ,sizeof cmd);
 		std::cout << "->";
@@ -166,6 +177,8 @@ namespace qml {
 					break;
 				} else if (com[0] == "cls") {
 					system("clear");
+				} else if (com[1] == "?") {
+					printHelp();
 				} else {
 					SendCom();
 				}
